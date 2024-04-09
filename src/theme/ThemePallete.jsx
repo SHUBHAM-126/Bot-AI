@@ -1,3 +1,5 @@
+import { BorderColor } from "@mui/icons-material";
+
 export const getThemePallete = (mode) => ({
     palette: {
         mode,
@@ -6,7 +8,8 @@ export const getThemePallete = (mode) => ({
                 primary: {
                     main: '#D7C7F4',
                     light: '#fff',
-                    dark: '#eee'
+                    dark: '#9785BA',
+                    bglight: '#fafafa',
                 },
                 text: {
                     primary: '#000000',
@@ -51,12 +54,23 @@ export const getThemePallete = (mode) => ({
                 size: 'large'
             },
             styleOverrides: {
-                contained: {
-                    fontFamily: 'Ubuntu, sans-serif',
+                root: {
                     textTransform: 'none',
+                    fontFamily: 'Ubuntu, sans-serif',
+                },
+                contained: {
+                    border: 1,
                     '&:hover': {
-                        background: 'primary.main',
                         color: '#fff'
+                    }
+                },
+                outlined: {
+                    color: '#000',
+                    borderColor: '#000',
+                    '&:hover': {
+                        background: '#9785BA',
+                        borderColor: '#9785BA',
+                        color: '#fff',
                     }
                 }
             }

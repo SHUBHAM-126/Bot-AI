@@ -25,7 +25,7 @@ export default function InitialChat() {
 
 
     return (
-        <Box>
+        <Stack height={1} justifyContent={'flex-end'} pb={3}>
             <Stack
                 alignItems={'center'}
                 spacing={2}
@@ -50,6 +50,6 @@ export default function InitialChat() {
                     </Grid>
                 ))}
             </Grid>
-        </Box>
+        </Stack>
     )
 }

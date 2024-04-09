@@ -27,7 +27,11 @@ export default function Card({ heading, subtext }) {
                 '&:hover .MuiIconButton-root': {
                     opacity: 1
                 },
-                cursor: 'pointer'
+                cursor: 'pointer',
+                '&:hover' : {
+                    bgcolor:'primary.bglight'
+                },
+                transition: 'background 200ms ease'
             }}
         >
             <Box>
@@ -44,7 +48,7 @@ export default function Card({ heading, subtext }) {
                     {subtext}
                 </Typography>
             </Box>
-            <IconButton size='small' sx={{ opacity: 0, bgcolor: '#f4f4f4' }}>
+            <IconButton size='small' sx={{ opacity: 0, bgcolor: '#f4f4f4', transition: 'opacity 400ms ease' }}>
                 <ArrowUpwardIcon fontSize='inherit' />
             </IconButton>
         </Stack>

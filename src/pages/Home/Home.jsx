@@ -1,9 +1,10 @@
-import {Box, Stack, Typography} from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import InitialChat from '../../components/InitialChat/InitialChat';
+import ChatInput from '../../components/ChatInput/ChatInput';
 
 export default function Home() {
     return (
-        <Box p={3}>
+        <Stack p={3} height={1}>
             <Typography
                 variant='h1'
                 component={'h1'}
@@ -11,10 +12,11 @@ export default function Home() {
                 Bot AI
             </Typography>
 
-            <Stack>
+            <Stack height={1} justifyContent={'space-between'}>
                 <InitialChat />
+                <ChatInput />
             </Stack>
 
-        </Box>
+        </Stack>
     )
 }
