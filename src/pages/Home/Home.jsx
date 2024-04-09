@@ -1,5 +1,5 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography'
+import {Box, Stack, Typography} from '@mui/material';
+import InitialChat from '../../components/InitialChat/InitialChat';
 
 export default function Home() {
     return (
@@ -10,6 +10,11 @@ export default function Home() {
             >
                 Bot AI
             </Typography>
+
+            <Stack>
+                <InitialChat />
+            </Stack>
+
         </Box>
     )
 }

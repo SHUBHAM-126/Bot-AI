@@ -5,7 +5,8 @@ export const getThemePallete = (mode) => ({
             ? {
                 primary: {
                     main: '#D7C7F4',
-                    light: '#fff'
+                    light: '#fff',
+                    dark: '#eee'
                 },
                 text: {
                     primary: '#000000',
@@ -33,6 +34,12 @@ export const getThemePallete = (mode) => ({
             fontSize: 28,
             fontWeight: 700,
         },
+        h2: {
+            fontFamily: 'Ubuntu, sans-serif',
+            color: 'text.primary',
+            fontSize: 28,
+            fontWeight: 500,
+        },
         heading: {
             fontFamily: 'Ubuntu, sans-serif',
         }
@@ -48,7 +55,7 @@ export const getThemePallete = (mode) => ({
                     fontFamily: 'Ubuntu, sans-serif',
                     textTransform: 'none',
                     '&:hover': {
-                        background: 'rgba(151, 133, 186, 1)',
+                        background: 'primary.main',
                         color: '#fff'
                     }
                 }
