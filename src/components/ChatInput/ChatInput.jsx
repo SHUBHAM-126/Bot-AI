@@ -2,7 +2,7 @@ import { TextField, Box, Button, Stack } from '@mui/material'
 
 export default function ChatInput() {
     return (
-        <Box>
+        <Box flexShrink={0} px={3} pb={3}>
             <Box component={'form'}>
                 <Stack
                     direction={'row'}

@@ -10,6 +10,7 @@ export const getThemePallete = (mode) => ({
                     light: '#fff',
                     dark: '#9785BA',
                     bglight: '#fafafa',
+                    bgtheme: '#FAF7FF'
                 },
                 text: {
                     primary: '#000000',
@@ -66,10 +67,9 @@ export const getThemePallete = (mode) => ({
                 },
                 outlined: {
                     color: '#000',
-                    borderColor: '#000',
+                    borderColor: '#9785BA',
                     '&:hover': {
                         background: '#9785BA',
-                        borderColor: '#9785BA',
                         color: '#fff',
                     }
                 }

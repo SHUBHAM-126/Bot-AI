@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { ThemeContext } from "../../theme/ThemeContext"
-import { Typography, Box, Stack, Button } from '@mui/material'
+import { Typography, Box, Stack, Button, IconButton } from '@mui/material'
 import icon from '../../assets/newchat.png'
-import edit from '../../assets/edit.png'
 import { Link } from 'react-router-dom'
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 export default function Sidebar() {
 
@@ -41,14 +41,10 @@ export default function Sidebar() {
                         New Chat
                     </Typography>
                 </Stack>
-                <Box
-                    component={'img'}
-                    src={edit}
-                    height={28}
-                    width={28}
-                    ml={'auto'}
-                    flexShrink={0}
-                />
+                <IconButton>
+                    <AddCommentIcon />
+                </IconButton>
+
             </Stack>
 
             <Box p={3}>

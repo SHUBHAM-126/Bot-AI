@@ -2,16 +2,7 @@ import { Box, Typography, Stack, IconButton } from '@mui/material'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { styled } from '@mui/material/styles';
 
-export default function Card({ heading, subtext }) {
-
-
-    const CustomCard = styled((props) => (
-        <Stack {...props} />
-    ))(() => ({
-        ':hover *': {
-            opacity: 1
-        }
-    }));
+export default function Card({ heading, subtext, handleClick }) {
 
     return (
         <Stack
@@ -33,6 +24,7 @@ export default function Card({ heading, subtext }) {
                 },
                 transition: 'background 200ms ease'
             }}
+            onClick={() => handleClick(heading)}
         >
             <Box>
                 <Typography
