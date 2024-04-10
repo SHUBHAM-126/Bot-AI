@@ -3,22 +3,16 @@ import InitialChat from '../../components/InitialChat/InitialChat';
 import ChatInput from '../../components/ChatInput/ChatInput';
 import ChattingCard from '../../components/ChattingCard/ChattingCard';
 import FeedbackModal from '../../components/FeedbackModal/FeedbackModal';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import data from '../../aiData/sampleData.json'
 
 export default function Home() {
 
     const [showModal, setShowModal] = useState(false)
-
-    // Format
-    // {
-    //  type:'AI/Human',
-    //  text:'',
-    //  time:''
-    // }
-
     const [chat, setChat] = useState([])
+    const listRef = useRef(null)
 
+    // GENERATING AI RESPONSE
     const generateResponse = (input) => {
 
         setChat(prev => ([...prev, {
@@ -42,6 +36,11 @@ export default function Home() {
         }]))
 
     }
+
+    //AUTOSCROLL TO LAST ELEMENT
+    useEffect(() => {
+        listRef.current?.lastElementChild?.scrollIntoView()
+    }, [chat])
 
     return (
         <Stack height={'100vh'}>
@@ -79,6 +78,7 @@ export default function Home() {
                                 borderRadius: '8px'
                             }
                         }}
+                        ref={listRef}
                     >
                         {chat.map((item, index) => (
                             <ChattingCard details={item} key={index} showFeedbackModal={() => setShowModal(true)} />
@@ -86,7 +86,7 @@ export default function Home() {
                     </Stack>
                 )}
 
-                <ChatInput />
+                <ChatInput generateResponse={generateResponse} />
             </Stack>
 
             <FeedbackModal open={showModal} handleClose={() => setShowModal(false)} />
