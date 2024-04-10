@@ -5,12 +5,29 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function ChattingCard({ details, showFeedbackModal }) {
+export default function ChattingCard({ details, showFeedbackModal, updateChat, setSelectedChatId }) {
 
     const [isRating, setIsRating] = useState(false)
     const [rating, setRating] = useState(0)
+
+    useEffect(() => {
+
+        if (isRating) {
+            updateChat(prev => (
+                prev.map(item => {
+                    if (item.id == details.id) {
+                        return { ...item, rating: rating || 0 }
+                    }
+                    else {
+                        return { ...item }
+                    }
+                })
+            ))
+        }
+
+    }, [rating])
 
     return (
         <Stack
@@ -74,7 +91,10 @@ export default function ChattingCard({ details, showFeedbackModal }) {
                             </IconButton>
                             <IconButton
                                 size='small'
-                                onClick={showFeedbackModal}
+                                onClick={() => {
+                                    setSelectedChatId(details.id)
+                                    showFeedbackModal()
+                                }}
                             >
                                 <ThumbDownOffAltIcon fontSize='inherit' />
                             </IconButton>
@@ -84,7 +104,7 @@ export default function ChattingCard({ details, showFeedbackModal }) {
                 </Stack>
 
                 {(isRating && details.type == "AI") && (
-                    <Box pt={3}>
+                    <Box pt={2}>
                         <Typography
                             component={'legend'}
                             fontSize={12}
@@ -102,6 +122,17 @@ export default function ChattingCard({ details, showFeedbackModal }) {
                             }}
                         />
                     </Box>
+                )}
+
+                {details.feedback && (
+                    <Typography pt={1}>
+                        <Box component={'span'} fontWeight={600}>
+                            Feedback:
+                        </Box>
+                        <Box component={'span'}>
+                            {` ${details.feedback}`}
+                        </Box>
+                    </Typography>
                 )}
 
             </Box>

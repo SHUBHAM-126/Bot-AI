@@ -11,15 +11,11 @@ export default function Home() {
     const [showModal, setShowModal] = useState(false)
     const [chat, setChat] = useState([])
     const listRef = useRef(null)
+    const [chatId, setChatId] = useState(1)
+    const [selectedChatId, setSelectedChatId] = useState(null)
 
     // GENERATING AI RESPONSE
     const generateResponse = (input) => {
-
-        setChat(prev => ([...prev, {
-            type: 'Human',
-            text: input,
-            time: '10:30pm'
-        }]))
 
         const response = data.find(item => input.toLowerCase() == item.question.toLowerCase())
 
@@ -29,17 +25,29 @@ export default function Home() {
             answer = response.response
         }
 
-        setChat(prev => ([...prev, {
+        setChat(prev => ([...prev,
+        {
+            type: 'Human',
+            text: input,
+            time: '10:30pm',
+            id: chatId
+        },
+        {
             type: 'AI',
             text: answer,
-            time: '10:30pm'
-        }]))
+            time: '10:30pm',
+            id: chatId + 1
+        }
+        ]))
+
+        setChatId(prev => prev + 2)
 
     }
 
     //AUTOSCROLL TO LAST ELEMENT
     useEffect(() => {
         listRef.current?.lastElementChild?.scrollIntoView()
+        console.log(chat)
     }, [chat])
 
     return (
@@ -81,7 +89,7 @@ export default function Home() {
                         ref={listRef}
                     >
                         {chat.map((item, index) => (
-                            <ChattingCard details={item} key={index} showFeedbackModal={() => setShowModal(true)} />
+                            <ChattingCard details={item} key={index} updateChat={setChat} setSelectedChatId={setSelectedChatId} showFeedbackModal={() => setShowModal(true)} />
                         ))}
                     </Stack>
                 )}
@@ -89,7 +97,7 @@ export default function Home() {
                 <ChatInput generateResponse={generateResponse} />
             </Stack>
 
-            <FeedbackModal open={showModal} handleClose={() => setShowModal(false)} />
+            <FeedbackModal open={showModal} updateChat={setChat} chatId={selectedChatId} handleClose={() => setShowModal(false)} />
 
         </Stack>
     )
