@@ -8,9 +8,10 @@ export const getThemePallete = (mode) => ({
                 primary: {
                     main: '#D7C7F4',
                     light: '#fff',
-                    dark: '#9785BA',
+                    dark: '#AF9FCD',
                     bglight: '#fafafa',
-                    bgtheme: '#FAF7FF'
+                    bgtheme: '#FAF7FF',
+                    bg: '#AF9FCD'
                 },
                 text: {
                     primary: '#000000',
@@ -57,20 +58,18 @@ export const getThemePallete = (mode) => ({
             styleOverrides: {
                 root: {
                     textTransform: 'none',
-                    fontFamily: 'Ubuntu, sans-serif',
+                    fontFamily: 'Open Sans, sans-serif'
                 },
                 contained: {
+                    fontFamily: 'Ubuntu, sans-serif',
                     border: 1,
-                    '&:hover': {
-                        color: '#fff'
-                    }
                 },
                 outlined: {
+                    fontFamily: 'Ubuntu, sans-serif',
                     color: '#000',
                     borderColor: '#9785BA',
                     '&:hover': {
-                        background: '#9785BA',
-                        color: '#fff',
+                        background: '#AF9FCD',
                     }
                 }
             }

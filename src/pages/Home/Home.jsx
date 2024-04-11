@@ -5,14 +5,17 @@ import ChattingCard from '../../components/ChattingCard/ChattingCard';
 import FeedbackModal from '../../components/FeedbackModal/FeedbackModal';
 import { useEffect, useRef, useState } from 'react';
 import data from '../../aiData/sampleData.json'
+import { useOutletContext } from "react-router-dom";
+import Navbar from '../../components/Navbar/Navbar';
 
 export default function Home() {
 
     const [showModal, setShowModal] = useState(false)
-    const [chat, setChat] = useState([])
     const listRef = useRef(null)
     const [chatId, setChatId] = useState(1)
     const [selectedChatId, setSelectedChatId] = useState(null)
+    const [scrollToBottom, setScrollToBottom] = useState(false)
+    const { chat, setChat } = useOutletContext();
 
     // GENERATING AI RESPONSE
     const generateResponse = (input) => {
@@ -47,58 +50,52 @@ export default function Home() {
     //AUTOSCROLL TO LAST ELEMENT
     useEffect(() => {
         listRef.current?.lastElementChild?.scrollIntoView()
-        console.log(chat)
-    }, [chat])
+    }, [scrollToBottom])
 
     return (
-        <Stack height={'100vh'}>
+        <Stack height={'100vh'} justifyContent={'space-between'}>
 
+            <Navbar />
 
-            <Stack height={1} justifyContent={'space-between'}>
+            {chat.length == 0 && <InitialChat generateResponse={generateResponse} />}
 
-                <Typography
-                    variant='h1'
-                    component={'h1'}
+            {chat.length > 0 && (
+                <Stack
+                    height={1}
+                    flexGrow={0}
                     p={3}
+                    spacing={3}
+                    sx={{
+                        overflowY: 'auto',
+                        '&::-webkit-scrollbar': {
+                            width: '10px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                            boxShadow: 'inset 0 0 8px rgba(0,0,0,0.1)',
+                            borderRadius: '8px'
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: 'rgba(151, 133, 186,0.4)',
+                            borderRadius: '8px'
+                        }
+                    }}
+                    ref={listRef}
                 >
-                    Bot AI
-                </Typography>
+                    {chat.map((item, index) => (
+                        <ChattingCard
+                            details={item}
+                            key={index}
+                            updateChat={setChat}
+                            setSelectedChatId={setSelectedChatId}
+                            showFeedbackModal={() => setShowModal(true)}
+                        />
+                    ))}
+                </Stack>
+            )}
 
-                {chat.length == 0 && <InitialChat generateResponse={generateResponse} />}
-
-                {chat.length > 0 && (
-                    <Stack
-                        height={1}
-                        flexGrow={0}
-                        p={3}
-                        spacing={3}
-                        sx={{
-                            overflowY: 'auto',
-                            '&::-webkit-scrollbar': {
-                                width: '10px',
-                            },
-                            '&::-webkit-scrollbar-track': {
-                                boxShadow: 'inset 0 0 8px rgba(0,0,0,0.1)',
-                                borderRadius: '8px'
-                            },
-                            '&::-webkit-scrollbar-thumb': {
-                                backgroundColor: 'rgba(151, 133, 186,0.4)',
-                                borderRadius: '8px'
-                            }
-                        }}
-                        ref={listRef}
-                    >
-                        {chat.map((item, index) => (
-                            <ChattingCard details={item} key={index} updateChat={setChat} setSelectedChatId={setSelectedChatId} showFeedbackModal={() => setShowModal(true)} />
-                        ))}
-                    </Stack>
-                )}
-
-                <ChatInput generateResponse={generateResponse} />
-            </Stack>
+            <ChatInput generateResponse={generateResponse} setScroll={setScrollToBottom} chat={chat} clearChat={() => setChat([])} />
 
             <FeedbackModal open={showModal} updateChat={setChat} chatId={selectedChatId} handleClose={() => setShowModal(false)} />
-
         </Stack>
     )
 }

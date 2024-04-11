@@ -7,7 +7,7 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import { useEffect, useState } from 'react';
 
-export default function ChattingCard({ details, showFeedbackModal, updateChat, setSelectedChatId }) {
+export default function ChattingCard({ details, showFeedbackModal, updateChat, setSelectedChatId, readOnly = false }) {
 
     const [isRating, setIsRating] = useState(false)
     const [rating, setRating] = useState(0)
@@ -42,6 +42,7 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                     opacity: 1
                 }
             }}
+            bgcolor={readOnly ? 'primary.main' : 'primary.light'}
         >
             <Box
                 component={'img'}
@@ -75,7 +76,7 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                         {details.time}
                     </Typography>
 
-                    {details.type == "AI" && (
+                    {(details.type == "AI" && !readOnly) && (
                         <Stack
                             direction={'row'}
                             visibility={'hidden'}
@@ -103,23 +104,25 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
 
                 </Stack>
 
-                {(isRating && details.type == "AI") && (
+                {((isRating || details.rating > 0) && details.type == "AI") && (
                     <Box pt={2}>
                         <Typography
                             component={'legend'}
                             fontSize={12}
+                            mb={.5}
                         >
-                            Rate this response
+                            {readOnly ? 'Rating:' : 'Rate this reponse:'}
                         </Typography>
                         <Rating
                             name="simple-controlled"
-                            value={rating}
+                            value={details.rating > 0 ? details.rating : rating}
                             onChange={(event, newValue) => {
                                 setRating(newValue)
                             }}
                             sx={{
                                 width: 'auto'
                             }}
+                            readOnly={readOnly}
                         />
                     </Box>
                 )}
