@@ -17,6 +17,8 @@ function App() {
   //create theme
   const theme = React.useMemo(() => createTheme(getThemePallete(mode)), [mode]);
 
+  //save theme mode in localstorage
+
   return (
     <ThemeContext.Provider value={{ mode: mode, setMode: setMode }}>
       <ThemeProvider theme={theme}>
@@ -31,15 +33,15 @@ function App() {
               '@media (max-width:800px)': {
                 width: '70%',
                 transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
-                transition: 'transform 400ms ease'
+                transition: 'transform 400ms ease',
               },
             }}
             position={{ xs: 'fixed', md: 'relative' }}
             height={'100vh'}
             zIndex={9999}
-            boxShadow={{ xs: 10, md: 0 }}
+            boxShadow={{ xs: menuOpen ? 10 : 0, md: 0 }}
           >
-            <Sidebar setChat={setChat} closeMenu = {() => setMenuOpen(false)} />
+            <Sidebar setChat={setChat} closeMenu={() => setMenuOpen(false)} />
           </Grid>
           <Grid item xs={12} md={9.5}>
             <Outlet context={{ chat: chat, setChat: setChat, handleMobileMenu: setMenuOpen }} />

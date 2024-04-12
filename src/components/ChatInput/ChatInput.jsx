@@ -44,10 +44,12 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
                         sx={{
                             flex: 1,
                             bgcolor: 'primary.light',
+                            borderRadius:1,
                             '& input': {
                                 fontSize: { xs: 12, md: 16 },
                                 paddingLeft: 1,
-                                paddingRight: 1
+                                paddingRight: 1,
+                                
                             }
                         }}
                         value={input}

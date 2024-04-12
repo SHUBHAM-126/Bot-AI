@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function Sidebar({ setChat, closeMenu }) {
 
-    const { setMode } = useContext(ThemeContext)
+    const { mode, setMode } = useContext(ThemeContext)
     const isMobile = useMediaQuery('(max-width:800px)')
 
     const handleMode = () => {
@@ -25,7 +25,7 @@ export default function Sidebar({ setChat, closeMenu }) {
                     sx={{
                         width: 1,
                         justifyContent: 'flex-end',
-                        color: 'primary.dark'
+                        color: mode == 'light' ? 'primary.dark' :'text.primary'
                     }}
                     onClick={closeMenu}
                 >

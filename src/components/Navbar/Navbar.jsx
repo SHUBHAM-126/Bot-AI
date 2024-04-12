@@ -27,7 +27,11 @@ export default function Navbar() {
                 spacing={2}
             >
 
-                {isMobile && <MenuIcon onClick={() => handleMobileMenu(prev => !prev)} />}
+                {isMobile && (
+                    <MenuIcon
+                        onClick={() => handleMobileMenu(prev => !prev)}
+                    />)
+                }
 
                 <Link to={'/'} style={{ textDecoration: 'none' }}>
                     <Typography

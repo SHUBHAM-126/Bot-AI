@@ -41,7 +41,7 @@ export default function Card({ heading, subtext, handleClick }) {
                     {subtext}
                 </Typography>
             </Box>
-            <IconButton size='small' sx={{ opacity: 0, bgcolor: '#f4f4f4', transition: 'opacity 400ms ease' }}>
+            <IconButton size='small' sx={{ opacity: 0, bgcolor: 'primary.bglight', transition: 'opacity 400ms ease' }}>
                 <ArrowUpwardIcon fontSize='inherit' />
             </IconButton>
         </Stack>
