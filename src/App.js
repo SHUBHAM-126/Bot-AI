@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { ThemeContext } from './theme/ThemeContext';
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as React from 'react';
@@ -10,7 +10,7 @@ import { Grid } from '@mui/material'
 
 function App() {
 
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState(localStorage.getItem('theme') || 'light')
   const [chat, setChat] = useState([])
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -18,6 +18,11 @@ function App() {
   const theme = React.useMemo(() => createTheme(getThemePallete(mode)), [mode]);
 
   //save theme mode in localstorage
+  useEffect(() => {
+
+    localStorage.setItem('theme', mode)
+
+  }, [mode])
 
   return (
     <ThemeContext.Provider value={{ mode: mode, setMode: setMode }}>
