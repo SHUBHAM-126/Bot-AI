@@ -27,7 +27,7 @@ export default function ChatHistoryCard({ details }) {
                 {formatDate(startOfDay(new Date(details.datetime)))}
             </Typography>
 
-            <Stack spacing={3}>
+            <Stack spacing={{xs:2, md:3}}>
 
                 {details.chat.map((item, index) => (
                     <ChattingCard details={item} readOnly={true} key={index} />

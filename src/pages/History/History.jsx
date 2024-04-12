@@ -39,7 +39,7 @@ export default function History() {
 
             <Navbar />
 
-            <Box p={3}>
+            <Box p={{xs:2, md:3}}>
                 <Typography variant='h2' textAlign={'center'} mb={3}>
                     Conversation History
                 </Typography>

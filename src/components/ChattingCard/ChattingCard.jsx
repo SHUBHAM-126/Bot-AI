@@ -31,11 +31,11 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
 
     return (
         <Stack
-            p={2}
+            p={{ xs: 1, md: 2 }}
             boxShadow={'0 0 4px rgba(0,0,0,0.1)'}
             borderRadius={1}
             direction={'row'}
-            spacing={3}
+            spacing={{ xs: 1, md: 3 }}
             sx={{
                 '&:hover .feedback-btns': {
                     visibility: 'visible',
@@ -47,8 +47,8 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
             <Box
                 component={'img'}
                 src={details.type == "AI" ? ai : human}
-                height={68}
-                width={68}
+                height={{ xs: 30, md: 68 }}
+                width={{ xs: 30, md: 68 }}
                 borderRadius={'50%'}
                 sx={{ objectFit: 'cover' }}
                 flexShrink={0}
@@ -57,10 +57,13 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                 <Typography
                     variant='heading'
                     fontWeight={700}
+                    fontSize={{ xs: 14, md: 16 }}
                 >
                     {details.type == "AI" ? 'Soul AI' : 'You'}
                 </Typography>
-                <Typography>
+                <Typography
+                    fontSize={{ xs: 12, md: 16 }}
+                >
                     {details.text}
                 </Typography>
                 <Stack
@@ -70,7 +73,7 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                     mt={1}
                 >
                     <Typography
-                        fontSize={12}
+                        fontSize={{ xs: 8, md: 12 }}
                         color={'text.secondary'}
                     >
                         {details.time}
@@ -79,8 +82,8 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                     {(details.type == "AI" && !readOnly) && (
                         <Stack
                             direction={'row'}
-                            visibility={'hidden'}
-                            sx={{ opacity: 0, transition: 'opacity 400ms ease' }}
+                            visibility={{ xs: 'visible', md: 'hidden' }}
+                            sx={{ opacity: { xs: 1, md: 0 }, transition: 'opacity 400ms ease' }}
                             className='feedback-btns'
                         >
                             <IconButton
@@ -105,10 +108,10 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                 </Stack>
 
                 {((isRating || details.rating > 0) && details.type == "AI") && (
-                    <Box pt={2}>
+                    <Box pt={{ xs: 1, md: 2 }}>
                         <Typography
                             component={'legend'}
-                            fontSize={12}
+                            fontSize={{ xs: 10, md: 12 }}
                             mb={.5}
                         >
                             {readOnly ? 'Rating:' : 'Rate this reponse:'}
@@ -128,7 +131,10 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                 )}
 
                 {details.feedback && (
-                    <Typography pt={1}>
+                    <Typography
+                        pt={1}
+                        fontSize={{ xs: 10, md: 16 }}
+                    >
                         <Box component={'span'} fontWeight={600}>
                             Feedback:
                         </Box>

@@ -7,7 +7,7 @@ export default function Card({ heading, subtext, handleClick }) {
     return (
         <Stack
             bgcolor={'primary.light'}
-            p={3}
+            p={{ xs: 1.2, md: 3 }}
             borderRadius={1}
             boxShadow={'0 0 12px rgba(0,0,0,0.1)'}
             direction={'row'}
@@ -30,12 +30,13 @@ export default function Card({ heading, subtext, handleClick }) {
                 <Typography
                     variant='heading'
                     fontWeight={700}
-                    fontSize={20}
+                    fontSize={{xs:14,md:20}}
                 >
                     {heading}
                 </Typography>
                 <Typography
                     color={'text.secondary'}
+                    fontSize={{xs:10, md:16}}
                 >
                     {subtext}
                 </Typography>

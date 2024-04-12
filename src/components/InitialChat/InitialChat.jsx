@@ -2,7 +2,7 @@ import { Box, Typography, Stack, Grid } from '@mui/material'
 import icon from '../../assets/bot.png'
 import Card from './Card'
 
-export default function InitialChat({generateResponse}) {
+export default function InitialChat({ generateResponse }) {
 
     const initialData = [
         {
@@ -25,7 +25,7 @@ export default function InitialChat({generateResponse}) {
 
 
     return (
-        <Stack height={1} justifyContent={'flex-end'} p={3}>
+        <Stack height={1} justifyContent={'flex-end'} p={{ xs: 2, md: 3 }}>
             <Stack
                 alignItems={'center'}
                 spacing={2}
@@ -37,16 +37,16 @@ export default function InitialChat({generateResponse}) {
                 <Box
                     component={'img'}
                     src={icon}
-                    height={70}
-                    width={70}
+                    height={{ xs: 42, md: 70 }}
+                    width={{ xs: 42, md: 70 }}
                     boxShadow={4}
                     borderRadius={'50%'}
                 />
             </Stack>
-            <Grid container spacing={3}>
+            <Grid container spacing={{ xs: 1, md: 3 }}>
                 {initialData.map(item => (
                     <Grid item key={item.heading} xs={12} md={6}>
-                        <Card heading={item.heading} subtext={item.subtext} handleClick= {generateResponse} />
+                        <Card heading={item.heading} subtext={item.subtext} handleClick={generateResponse} />
                     </Grid>
                 ))}
             </Grid>

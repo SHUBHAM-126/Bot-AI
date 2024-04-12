@@ -45,6 +45,9 @@ export default function ChatFilter({ allChats, filterChats }) {
                 value={option}
                 onChange={handleChange}
                 size='small'
+                sx={{
+                    minWidth: { xs: 1, md: 160 }
+                }}
             >
                 <MenuItem value='All Ratings'>All Ratings</MenuItem>
                 <MenuItem value={1}>1 Star</MenuItem>

@@ -12,6 +12,7 @@ function App() {
 
   const [mode, setMode] = useState('light')
   const [chat, setChat] = useState([])
+  const [menuOpen, setMenuOpen] = useState(false)
 
   //create theme
   const theme = React.useMemo(() => createTheme(getThemePallete(mode)), [mode]);
@@ -22,11 +23,26 @@ function App() {
         <CssBaseline />
 
         <Grid container sx={{ background: 'linear-gradient(rgba(215, 199, 244, 0.2), rgba(151, 133, 186, 0.2))' }} >
-          <Grid item xs={12} md={2.5} sx={{ bgcolor: 'primary.light' }}>
-            <Sidebar setChat={setChat} />
+          <Grid
+            item xs={12}
+            md={2.5}
+            sx={{
+              bgcolor: 'primary.light',
+              '@media (max-width:800px)': {
+                width: '70%',
+                transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
+                transition: 'transform 400ms ease'
+              },
+            }}
+            position={{ xs: 'fixed', md: 'relative' }}
+            height={'100vh'}
+            zIndex={9999}
+            boxShadow={{ xs: 10, md: 0 }}
+          >
+            <Sidebar setChat={setChat} closeMenu = {() => setMenuOpen(false)} />
           </Grid>
           <Grid item xs={12} md={9.5}>
-            <Outlet context={{ chat: chat, setChat: setChat }} />
+            <Outlet context={{ chat: chat, setChat: setChat, handleMobileMenu: setMenuOpen }} />
           </Grid>
         </Grid>
 

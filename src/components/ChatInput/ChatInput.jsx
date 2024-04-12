@@ -1,4 +1,4 @@
-import { TextField, Box, Button, Stack, Snackbar } from '@mui/material'
+import { TextField, Box, Button, Stack, Snackbar, useMediaQuery } from '@mui/material'
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -33,17 +33,22 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
     }, [])
 
     return (
-        <Box flexShrink={0} px={3} pb={3}>
+        <Box flexShrink={0} px={{ xs: .5, md: 3 }} pb={{ xs: 1, md: 3 }}>
             <Box component={'form'} onSubmit={handleSubmit}>
                 <Stack
                     direction={'row'}
-                    spacing={2}
+                    spacing={{ xs: .5, md: 2 }}
                 >
                     <TextField
                         placeholder='Message Bot AI...'
                         sx={{
                             flex: 1,
-                            bgcolor: 'primary.light'
+                            bgcolor: 'primary.light',
+                            '& input': {
+                                fontSize: { xs: 12, md: 16 },
+                                paddingLeft: 1,
+                                paddingRight: 1
+                            }
                         }}
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
@@ -53,6 +58,14 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
                     <Button
                         variant='contained'
                         type='submit'
+                        sx={{
+                            fontSize: { xs: 12, md: 16 },
+                            '@media (max-width:767px)':{
+                                minWidth: 0,
+                                paddingLeft: 1.5,
+                                paddingRight: 1.5
+                            }
+                        }}
                     >
                         Ask
                     </Button>
@@ -60,6 +73,14 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
                         variant='outlined'
                         onClick={handleSave}
                         disabled={!chat.length > 0}
+                        sx={{
+                            fontSize: { xs: 12, md: 16 },
+                            '@media (max-width:767px)':{
+                                minWidth: 0,
+                                paddingLeft: 1.5,
+                                paddingRight: 1.5
+                            }
+                        }}
                     >
                         Save
                     </Button>

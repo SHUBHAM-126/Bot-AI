@@ -44,6 +44,9 @@ export const getThemePallete = (mode) => ({
             color: 'text.primary',
             fontSize: 28,
             fontWeight: 500,
+            '@media (max-width:600px)': {
+                fontSize: 22,
+            },
         },
         heading: {
             fontFamily: 'Ubuntu, sans-serif',

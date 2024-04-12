@@ -53,7 +53,15 @@ export default function Home() {
     }, [scrollToBottom])
 
     return (
-        <Stack height={'100vh'} justifyContent={'space-between'}>
+        <Stack
+            height={'100vh'}
+            justifyContent={'space-between'}
+            sx={{
+                '@media (max-width:767px)': {
+                    background: 'linear-gradient(#F9FAFA 60%, #EDE4FF)'
+                }
+            }}
+        >
 
             <Navbar />
 
@@ -63,8 +71,8 @@ export default function Home() {
                 <Stack
                     height={1}
                     flexGrow={0}
-                    p={3}
-                    spacing={3}
+                    p={{ xs: 2, md: 3 }}
+                    spacing={{ xs: 2, md: 3 }}
                     sx={{
                         overflowY: 'auto',
                         '&::-webkit-scrollbar': {

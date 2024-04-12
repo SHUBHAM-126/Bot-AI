@@ -15,7 +15,7 @@ export default function FeedbackModal({ open, handleClose, chatId, updateChat })
         width: '95%',
         bgcolor: 'primary.bgtheme',
         boxShadow: 24,
-        p: 3,
+        p: { xs: 2, md: 3 },
         maxWidth: 720,
         borderRadius: '10px'
     }
@@ -47,9 +47,9 @@ export default function FeedbackModal({ open, handleClose, chatId, updateChat })
             <Box sx={style}>
 
                 <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'space-between'}>
-                    <Stack direction={'row'} spacing={2} alignItems={'center'}>
+                    <Stack direction={'row'} spacing={{ xs: .5, md: 2 }} alignItems={'center'}>
                         <FeedbackIcon />
-                        <Typography variant={'heading'} fontSize={18}>
+                        <Typography variant={'heading'} fontSize={{ xs: 14, md: 18 }}>
                             Provide Additional Feedback
                         </Typography>
                     </Stack>
