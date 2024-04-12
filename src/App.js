@@ -43,7 +43,7 @@ function App() {
             }}
             position={{ xs: 'fixed', md: 'relative' }}
             height={'100vh'}
-            zIndex={9999}
+            zIndex={{ xs: 9999, md: 1 }}
             boxShadow={{ xs: menuOpen ? 10 : 0, md: 0 }}
           >
             <Sidebar setChat={setChat} closeMenu={() => setMenuOpen(false)} />

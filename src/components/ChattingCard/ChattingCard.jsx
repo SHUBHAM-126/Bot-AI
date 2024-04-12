@@ -6,6 +6,7 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 
 export default function ChattingCard({ details, showFeedbackModal, updateChat, setSelectedChatId, readOnly = false }) {
 
@@ -76,7 +77,7 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                         fontSize={{ xs: 8, md: 12 }}
                         color={'text.secondary'}
                     >
-                        {details.time}
+                        {format(details.time, 'hh:mm a')}
                     </Typography>
 
                     {(details.type == "AI" && !readOnly) && (

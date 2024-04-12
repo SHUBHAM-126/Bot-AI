@@ -44,12 +44,12 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
                         sx={{
                             flex: 1,
                             bgcolor: 'primary.light',
-                            borderRadius:1,
+                            borderRadius: 1,
                             '& input': {
                                 fontSize: { xs: 12, md: 16 },
-                                paddingLeft: 1,
-                                paddingRight: 1,
-                                
+                                paddingLeft: { xs: 1, md: 2 },
+                                paddingRight: { xs: 1, md: 2 },
+
                             }
                         }}
                         value={input}
@@ -62,7 +62,7 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
                         type='submit'
                         sx={{
                             fontSize: { xs: 12, md: 16 },
-                            '@media (max-width:767px)':{
+                            '@media (max-width:767px)': {
                                 minWidth: 0,
                                 paddingLeft: 1.5,
                                 paddingRight: 1.5
@@ -77,7 +77,7 @@ export default function ChatInput({ generateResponse, setScroll, chat, clearChat
                         disabled={!chat.length > 0}
                         sx={{
                             fontSize: { xs: 12, md: 16 },
-                            '@media (max-width:767px)':{
+                            '@media (max-width:767px)': {
                                 minWidth: 0,
                                 paddingLeft: 1.5,
                                 paddingRight: 1.5

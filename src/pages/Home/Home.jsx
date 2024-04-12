@@ -35,13 +35,13 @@ export default function Home() {
         {
             type: 'Human',
             text: input,
-            time: '10:30pm',
+            time: new Date(),
             id: chatId
         },
         {
             type: 'AI',
             text: answer,
-            time: '10:30pm',
+            time: new Date(),
             id: chatId + 1
         }
         ]))
